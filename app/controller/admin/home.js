@@ -28,6 +28,35 @@ class adminHomeController extends Controller {
         }
     }
 
+
+    async addtype() {
+        console.log('----------------------')
+        const resAddType = await this.service.type.addType();
+        if (resAddType) {
+            this.ctx.body = { data: resAddType };
+        } else {
+            this.ctx.body = { data: 'Service Error' };
+        }
+    }
+
+    async updatetype() {
+        const resUpdateType = await this.service.type.updateType();
+        if (resUpdateType) {
+            this.ctx.body = { data: resUpdateType };
+        } else {
+            this.ctx.body = { data: 'Service Error' };
+        }
+    }
+
+    async deletetype() {
+        const resDeleteType = await this.service.type.deleteType();
+        if (resDeleteType) {
+            this.ctx.body = { data: resDeleteType };
+        } else {
+            this.ctx.body = { data: 'Service Error' };
+        }
+    }
+
     async getArticle() {
         const resArticle = await this.service.article.findArticle();
         if (resArticle) {
@@ -62,6 +91,39 @@ class adminHomeController extends Controller {
         const resDeleteArticle = await this.service.article.deleteArticleById();
 
         if (resDeleteArticle) {
+            this.ctx.body = { success: true }
+        } else {
+            this.ctx.body = { success: false }
+        }
+    }
+
+    async getMusic() {
+        const resMusic = await this.service.music.findMusic();
+        if (resMusic) {
+            this.ctx.body = { data: resMusic };
+        } else {
+            this.ctx.body = { data: 'Service Error' };
+        }
+    }
+    async addMusic() {
+        const resMusic = await this.service.music.addMusic();
+        if (resMusic) {
+            this.ctx.body = { data: resMusic };
+        } else {
+            this.ctx.body = { data: 'Service Error' };
+        }
+    }
+    async updateMusic() {
+        const resUpdate = await this.service.music.upadteMusic();
+        if (resUpdate) {
+            this.ctx.body = { data: resUpdate };
+        } else {
+            this.ctx.body = { data: 'Service Error' };
+        }
+    }
+    async deleteMusic() {
+        const resDeleteMusic = await this.service.music.deleteMusic();
+        if (resDeleteMusic) {
             this.ctx.body = { success: true }
         } else {
             this.ctx.body = { success: false }

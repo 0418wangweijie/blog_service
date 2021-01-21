@@ -67,7 +67,6 @@ class ArticleService extends Service {
         const id = this.ctx.params.id;
         try {
             const resDeleteArticle = await this.ctx.model.Article.findByIdAndDelete({ _id: id });
-            console.log(resDeleteArticle);
             return resDeleteArticle;
         } catch (error) {
             this.ctx.body = JSON.stringify(error);
