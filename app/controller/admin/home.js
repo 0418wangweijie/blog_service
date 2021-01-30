@@ -129,5 +129,15 @@ class adminHomeController extends Controller {
             this.ctx.body = { success: false }
         }
     }
+
+    async statistics() {
+        const resStatistics = await this.service.admin.statistics.findStatistics();
+        console.log(resStatistics);
+        if (resStatistics) {
+            this.ctx.body = { data: resStatistics };
+        } else {
+            this.ctx.body = { data: 'Service Error' };
+        }
+    }
 }
 module.exports = adminHomeController;

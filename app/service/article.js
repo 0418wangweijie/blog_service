@@ -21,9 +21,14 @@ class ArticleService extends Service {
             if (articleId) {
                 articleId.visitCount = articleId.visitCount + 1;
                 const articleDeticles = await this.ctx.model.Article.updateOne({ _id: articleId._id }, { visitCount: articleId.visitCount });
+                const statisticSave = await this.ctx.model.Admin.Statistics({
+                    year: Date.parse(new Date()),
+                    value: articleId.visitCount,
+                    name: articleId.title,
+                })
+                statisticSave.save();
                 if (articleDeticles.ok == 1) {
                     const updateArticle = await this.ctx.model.Article.findById(articleId._id);
-                    console.log(updateArticle)
                     return updateArticle;
                 }
                 return articleId;

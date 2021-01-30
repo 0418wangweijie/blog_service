@@ -17,4 +17,5 @@ module.exports = (app) => {
     router.post('/addMusic', controller.admin.home.addMusic);
     router.post('/updateMusic', controller.admin.home.updateMusic);
     router.get('/deleteMusic/:id', controller.admin.home.deleteMusic);
+    router.get('/statistics', controller.admin.home.statistics);
 }
