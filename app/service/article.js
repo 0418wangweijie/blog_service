@@ -22,11 +22,21 @@ class ArticleService extends Service {
                 articleId.visitCount = articleId.visitCount + 1;
                 const articleDeticles = await this.ctx.model.Article.updateOne({ _id: articleId._id }, { visitCount: articleId.visitCount });
                 const statisticSave = await this.ctx.model.Admin.Statistics({
-                    year: Date.parse(new Date()),
+                    year: new Date(new Date().toLocaleDateString()).getTime(),
                     value: articleId.visitCount,
                     name: articleId.title,
                 })
                 statisticSave.save();
+
+                const findPie = await this.ctx.model.Admin.Pie.findOne({ typeId: articleId.typeId });
+                if (findPie) {
+                    const Pie = await this.ctx.model.Admin.Pie.updateOne({ typeId: articleId.typeId }, { value: findPie.value + 1 });
+                    console.log(Pie);
+                }
+
+
+                // console.log(resPie);
+
                 if (articleDeticles.ok == 1) {
                     const updateArticle = await this.ctx.model.Article.findById(articleId._id);
                     return updateArticle;

@@ -38,7 +38,10 @@ class HomeController extends Controller {
     // 根据类型id获取列表
     async list() {
         const resList = await this.service.list.findList();
-        this.ctx.body = { data: resList };
+        var newResList = resList.sort((a, b) => {
+            return b.createTime - a.createTime;
+        });
+        this.ctx.body = { data: newResList };
     }
 
 }

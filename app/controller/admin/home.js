@@ -132,9 +132,17 @@ class adminHomeController extends Controller {
 
     async statistics() {
         const resStatistics = await this.service.admin.statistics.findStatistics();
-        console.log(resStatistics);
         if (resStatistics) {
             this.ctx.body = { data: resStatistics };
+        } else {
+            this.ctx.body = { data: 'Service Error' };
+        }
+    }
+
+    async getPie() {
+        const pie = await this.service.admin.pieStatistics.findPie();
+        if (pie) {
+            this.ctx.body = { data: pie };
         } else {
             this.ctx.body = { data: 'Service Error' };
         }
