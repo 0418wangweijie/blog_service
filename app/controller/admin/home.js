@@ -60,7 +60,10 @@ class adminHomeController extends Controller {
     async getArticle() {
         const resArticle = await this.service.article.findArticle();
         if (resArticle) {
-            this.ctx.body = { data: resArticle };
+            var newResArticle = resArticle.sort((a, b) => {
+                return b.createTime - a.createTime;
+            });
+            this.ctx.body = { data: newResArticle };
         } else {
             this.ctx.body = { data: 'Service Error' };
         }

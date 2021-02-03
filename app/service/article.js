@@ -29,13 +29,25 @@ class ArticleService extends Service {
                 statisticSave.save();
 
                 const findPie = await this.ctx.model.Admin.Pie.findOne({ typeId: articleId.typeId });
+
                 if (findPie) {
                     const Pie = await this.ctx.model.Admin.Pie.updateOne({ typeId: articleId.typeId }, { value: findPie.value + 1 });
                     console.log(Pie);
+                } else {
+                    //  计算初次新增分类访问量
+                    const resType = await this.ctx.model.Type.find();
+                    console.log(resType);
+                    for (let i = 0; i < resType.length; i++) {
+                        if (resType[i]._id == articleId.typeId) {
+                            const savePie = await this.ctx.model.Admin.Pie({
+                                value: articleId.visitCount,
+                                name: resType[i].typeName,
+                                typeId: resType[i]._id,
+                            });
+                            savePie.save();
+                        }
+                    }
                 }
-
-
-                // console.log(resPie);
 
                 if (articleDeticles.ok == 1) {
                     const updateArticle = await this.ctx.model.Article.findById(articleId._id);
