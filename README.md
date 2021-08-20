@@ -1,2 +1,11 @@
-# blog_service
-blog_service
+### 下载以来包
+
+```shell
+    yarn install
+```
+
+### 启动项目
+
+```shell
+    yarn dev
+```

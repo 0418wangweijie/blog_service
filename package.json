@@ -1,0 +1,56 @@
+{
+  "name": "service",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "egg": "^2.15.1",
+    "egg-cors": "^2.2.3",
+    "egg-mongoose": "^3.3.1",
+    "egg-scripts": "^2.11.0",
+    "hi": "^0.0.0",
+    "highlight.js": "^10.4.1",
+    "marked": "^1.2.6",
+    "moment": "^2.29.1",
+    "pump": "^3.0.0",
+    "silly-datetime": "^0.1.2",
+    "turndown": "^7.0.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start",
+    "stop": "egg-scripts stop --title=egg-server-service",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT"
+}
